@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ÓRBITA — Manual de Marca</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0b10;
+    --panel:#101219;
+    --ink:#f2f3f6;
+    --muted:#8b8fa3;
+    --accent:#ff6b4a;
+    --accent2:#38f0c8;
+    --warm:#ffc857;
+    --line: rgba(242,243,246,.1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .section{padding:110px 0; border-bottom:1px solid var(--line);}
+  .section-label{font-family:'IBM Plex Mono', monospace; font-size:.78rem; color:var(--accent2); margin-bottom:10px;}
+  h1,h2,h3{font-weight:700; letter-spacing:-0.02em;}
+
+  .navbar{background:rgba(10,11,16,.85); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+  .navbar-toggler{border-color:var(--line);}
+  .navbar-toggler-icon{filter:invert(1);}
+  .navbar .nav-link{color:var(--ink); font-size:.9rem; opacity:.7;}
+  .navbar .nav-link:hover{opacity:1; color:var(--accent2);}
+  .brand-mark{font-weight:700; font-size:1.2rem;}
+  .brand-mark span{color:var(--accent2);}
+
+  .hero{
+    min-height:88vh;
+    display:flex;
+    align-items:center;
+    position:relative;
+    overflow:hidden;
+    background:radial-gradient(circle at 78% 30%, rgba(255,107,74,.24), transparent 45%), var(--bg);
+  }
+  .orbit-ring{position:absolute; border:1px solid var(--line); border-radius:50%;}
+  .r1{width:640px; height:640px; top:-220px; right:-180px;}
+  .r2{width:420px; height:420px; top:-100px; right:-60px; border-color:rgba(56,240,200,.25);}
+  .dot-orbit{position:absolute; width:10px; height:10px; background:var(--accent2); border-radius:50%; top:-100px; right:150px; box-shadow:0 0 18px var(--accent2);}
+  .hero h1{font-size:clamp(3rem, 8vw, 6rem); line-height:.95; max-width:12ch;}
+  .hero p{max-width:46ch; color:var(--muted); font-size:1.08rem;}
+  .badge-live{
+    display:inline-flex; align-items:center; gap:8px;
+    border:1px solid var(--line); border-radius:100px; padding:6px 14px;
+    font-family:'IBM Plex Mono', monospace; font-size:.75rem; color:var(--muted);
+  }
+  .badge-live .pulse{width:7px; height:7px; border-radius:50%; background:var(--accent2); box-shadow:0 0 8px var(--accent2);}
+
+  .logo-plate{background:var(--panel); border:1px solid var(--line); border-radius:6px; height:280px; display:flex; align-items:center; justify-content:center;}
+  .logo-plate.light{background:#fff; color:#0a0b10;}
+  .logo-mark{font-size:2.75rem; font-weight:700;}
+  .logo-mark .dot{color:var(--accent2);}
+  .rule-card{border:1px solid var(--line); background:var(--panel); border-radius:6px; padding:24px; height:100%;}
+  .status{font-family:'IBM Plex Mono', monospace; font-size:.72rem; padding:3px 10px; border-radius:100px; display:inline-block; margin-bottom:14px;}
+  .status.ok{background:rgba(56,240,200,.12); color:var(--accent2);}
+  .status.no{background:rgba(255,90,90,.12); color:#ff8a8a;}
+
+  .swatch{height:120px; border-radius:6px; display:flex; align-items:flex-end; padding:10px; font-family:'IBM Plex Mono', monospace; font-size:.75rem;}
+  #paletteStatus{font-size:.85rem; color:var(--muted);}
+
+  .type-row{border-top:1px solid var(--line); padding:22px 0; display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap;}
+  .type-row:last-child{border-bottom:1px solid var(--line);}
+
+  .quote-box{border:1px solid var(--line); background:var(--panel); border-radius:6px; padding:28px;}
+  #quoteText{font-size:1.15rem; line-height:1.5;}
+  .btn-accent{background:var(--accent); color:#fff; border-radius:100px; font-size:.85rem; padding:9px 20px; border:none;}
+  .btn-accent:hover{background:#e65335; color:#fff;}
+
+  .app-card{border:1px solid var(--line); border-radius:6px; padding:22px; background:var(--panel); height:100%;}
+  .phone-mock{width:170px; border:1px solid var(--line); border-radius:16px; padding:10px; background:#000;}
+  .phone-mock .screen{border-radius:8px; overflow:hidden; min-height:230px; background:#111; position:relative;}
+  .phone-mock .screen img{width:100%; height:120px; object-fit:cover; display:block;}
+  .phone-mock .screen .txt{padding:8px; font-size:.62rem; color:var(--muted);}
+
+  footer{padding:48px 0; font-family:'IBM Plex Mono', monospace; font-size:.8rem; color:var(--muted);}
+  a{color:var(--accent2);}
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+    <a class="brand-mark text-decoration-none" href="#inicio">ÓRBITA<span>.</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#brandNav" aria-label="Abrir navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="brandNav">
+      <div class="d-flex flex-column flex-lg-row gap-2 gap-lg-4 mono">
+      <a class="nav-link" href="#inicio">Inicio</a>
+      <a class="nav-link" href="#marca">Marca</a>
+      <a class="nav-link" href="#logotipo">Logotipo</a>
+      <a class="nav-link" href="#usos">Usos</a>
+      <a class="nav-link" href="#color">Color</a>
+      <a class="nav-link" href="#tipografia">Tipografía</a>
+      <a class="nav-link" href="#icono">Iconografía</a>
+      <a class="nav-link" href="#voz">Voz</a>
+      <a class="nav-link" href="#apps">Aplicaciones</a>
+      <a class="nav-link" href="#contacto">Contacto</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="inicio">
+  <div class="orbit-ring r1"></div>
+  <div class="orbit-ring r2"></div>
+  <div class="dot-orbit"></div>
+  <div class="container">
+    <p class="section-label">01 — Portada del sistema</p>
+    <span class="badge-live mb-4"><span class="pulse"></span> Manual de identidad visual · 2026</span>
+    <h1 class="my-4">Estudiar en órbita, no en caos.</h1>
+    <p>ÓRBITA es la app que organiza el semestre de un estudiante: horarios, entregas y hábitos de estudio en un solo lugar. Este manual define su identidad visual y verbal.</p>
+  </div>
+</header>
+
+<section class="section" id="marca">
+  <div class="container">
+    <div class="row g-5">
+      <div class="col-lg-4">
+        <p class="section-label">02 — Sobre la marca</p>
+        <h2 class="h3">Qué es ÓRBITA</h2>
+      </div>
+      <div class="col-lg-8">
+        <p class="fs-5" style="max-width:60ch; color:var(--muted);">Cada semestre tiene un centro de gravedad: parciales, entregas, trabajos en grupo. Todo lo demás gira alrededor de eso. ÓRBITA ayuda a verlo con claridad y moverse con intención, no con ansiedad.</p>
+        <div class="row mt-4 g-4">
+          <div class="col-sm-4"><p class="mono section-label mb-1">Misión</p><p class="small" style="color:var(--muted);">Reducir el caos académico con herramientas claras.</p></div>
+          <div class="col-sm-4"><p class="mono section-label mb-1">Público</p><p class="small" style="color:var(--muted);">Estudiantes de media y universidad.</p></div>
+          <div class="col-sm-4"><p class="mono section-label mb-1">Personalidad</p><p class="small" style="color:var(--muted);">Directa, cercana, tranquila.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="logotipo">
+  <div class="container">
+    <p class="section-label">03 — Logotipo</p>
+    <h2 class="h3 mb-5">Concepto y construcción</h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="logo-plate"><span class="logo-mark">ÓRBITA<span class="dot">.</span></span></div>
+        <p class="small mt-2" style="color:var(--muted);">Versión principal — fondo oscuro</p>
+      </div>
+      <div class="col-md-6">
+        <div class="logo-plate light"><span class="logo-mark">ÓRBITA<span class="dot" style="color:var(--accent);">.</span></span></div>
+        <p class="small mt-2" style="color:var(--muted);">Versión secundaria — fondo claro</p>
+      </div>
+    </div>
+    <p class="mt-4" style="max-width:60ch; color:var(--muted);">El punto final es el "cuerpo" que orbita el nombre: el único elemento de color del logotipo, siempre pegado al texto. Tipografía Space Grotesk Bold, sin cursiva ni efectos.</p>
+  </div>
+</section>
+
+<section class="section" id="usos">
+  <div class="container">
+    <p class="section-label">04 — Uso correcto</p>
+    <h2 class="h3 mb-5">Qué sí y qué no</h2>
+    <div class="row g-4">
+      <div class="col-md-4"><div class="rule-card"><span class="status ok">CORRECTO</span><p class="mb-0 small">Respetar el área de protección mínima alrededor del logotipo.</p></div></div>
+      <div class="col-md-4"><div class="rule-card"><span class="status no">INCORRECTO</span><p class="mb-0 small">Estirar, inclinar o rotar el logotipo.</p></div></div>
+      <div class="col-md-4"><div class="rule-card"><span class="status no">INCORRECTO</span><p class="mb-0 small">Cambiar el color del punto o añadir sombras/degradados.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="color">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-end flex-wrap gap-3 mb-5">
+      <div><p class="section-label">05 — Paleta de color</p><h2 class="h3 mb-0">Base + variación generada por API</h2></div>
+      <button class="btn-accent" id="refreshPalette">Generar variación ↻</button>
+    </div>
+    <div class="row g-3 mb-2">
+      <div class="col-6 col-md-3"><div class="swatch" style="background:#0a0b10; color:#fff;">#0A0B10 — Fondo</div></div>
+      <div class="col-6 col-md-3"><div class="swatch" style="background:#ff6b4a; color:#fff;">#FF6B4A — Acento</div></div>
+      <div class="col-6 col-md-3"><div class="swatch" style="background:#38f0c8;">#38F0C8 — Acento 2</div></div>
+      <div class="col-6 col-md-3"><div class="swatch" style="background:#f2f3f6;">#F2F3F6 — Texto</div></div>
+    </div>
+    <div class="row g-3" id="apiPalette"></div>
+    <p id="paletteStatus" class="mono mt-3">Consultando TheColorAPI…</p>
+  </div>
+</section>
+
+<section class="section" id="tipografia">
+  <div class="container">
+    <p class="section-label">06 — Tipografía</p>
+    <h2 class="h3 mb-4">Sistema tipográfico</h2>
+    <div class="type-row"><span style="font-size:3rem; font-weight:700;">Aa</span><span class="mono small" style="color:var(--muted);">Space Grotesk / Bold — Titulares</span></div>
+    <div class="type-row"><span style="font-size:3rem; font-weight:500;">Aa</span><span class="mono small" style="color:var(--muted);">Space Grotesk / Medium — Subtítulos</span></div>
+    <div class="type-row"><span style="font-size:3rem; font-family:'IBM Plex Mono';">Aa</span><span class="mono small" style="color:var(--muted);">IBM Plex Mono — Datos, etiquetas, UI</span></div>
+  </div>
+</section>
+
+<section class="section" id="icono">
+  <div class="container">
+    <p class="section-label">07 — Iconografía</p>
+    <h2 class="h3 mb-5">Trazo y geometría</h2>
+    <div class="row g-4 text-center">
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">◐</span></div></div>
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">◇</span></div></div>
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">○</span></div></div>
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">△</span></div></div>
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">▢</span></div></div>
+      <div class="col-4 col-md-2"><div class="rule-card d-flex align-items-center justify-content-center"><span style="font-size:1.8rem; color:var(--accent2);">◈</span></div></div>
+    </div>
+    <p class="mt-4" style="max-width:60ch; color:var(--muted);">Trazo de 1.5px, esquinas suaves, geometría circular u orbital — nunca relleno sólido, coherente con el punto del logotipo.</p>
+  </div>
+</section>
+
+<section class="section" id="voz">
+  <div class="container">
+    <p class="section-label">08 — Voz y tono</p>
+    <h2 class="h3 mb-5">Cómo habla ÓRBITA</h2>
+    <div class="row g-5">
+      <div class="col-lg-5">
+        <ul class="small" style="max-width:42ch; color:var(--muted);">
+          <li class="mb-2">Frases cortas, verbos activos: "Organiza tu semana", no "Se organiza tu semana".</li>
+          <li class="mb-2">Nunca genera culpa ni urgencia falsa.</li>
+          <li class="mb-2">Cercana pero sin diminutivos ni exceso de emojis.</li>
+        </ul>
+      </div>
+      <div class="col-lg-7">
+        <div class="quote-box">
+          <p class="mono section-label">EJEMPLO EN VIVO — API de frases</p>
+          <p id="quoteText">Cargando una frase de ejemplo…</p>
+          <button class="btn-accent mt-2" id="newQuote">Otra frase ↻</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="apps">
+  <div class="container">
+    <p class="section-label">09 — Aplicaciones de la marca</p>
+    <h2 class="h3 mb-5">La marca en contexto</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="app-card d-flex justify-content-center">
+          <div class="phone-mock">
+            <div class="screen">
+              <img id="apodImg" src="" alt="Imagen del espacio del día">
+              <div class="txt"><strong>Descubre hoy</strong><br><span id="apodTitle">Cargando imagen de la NASA…</span></div>
+            </div>
+          </div>
+        </div>
+        <p class="small mt-2" style="color:var(--muted);">Aplicación 01 — Widget "Descubre hoy"</p>
+      </div>
+      <div class="col-md-4">
+        <div class="app-card">
+          <p class="mono section-label">Redes sociales</p>
+          <div style="background:#000; border-radius:6px; height:150px; display:flex; align-items:center; justify-content:center; font-weight:700;">ÓRBITA<span style="color:var(--accent2);">.</span></div>
+        </div>
+        <p class="small mt-2" style="color:var(--muted);">Avatar / foto de perfil</p>
+      </div>
+      <div class="col-md-4">
+        <div class="app-card">
+          <p class="mono section-label">Papelería</p>
+          <div style="background:#fff; color:#0a0b10; border-radius:6px; height:150px; display:flex; align-items:center; justify-content:center;">
+            <span style="font-weight:700;">ÓRBITA<span style="color:var(--accent);">.</span></span>
+          </div>
+        </div>
+        <p class="small mt-2" style="color:var(--muted);">Tarjeta de presentación</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contacto">
+  <div class="container">
+    <p class="section-label">10 — Contacto</p>
+    <h2 class="h3">¿Dudas sobre el uso de la marca?</h2>
+    <p style="max-width:44ch; color:var(--muted);">Este documento cubre lo esencial del sistema. Para casos no contemplados, escribe antes de improvisar.</p>
+    <p class="mono small mt-4">marca@orbita.app</p>
+  </div>
+</section>
+
+<footer class="container">ÓRBITA — Manual de marca · 2026 · Trabajo académico</footer>
+
+<script>
+  async function loadPalette(){
+    const statusEl = document.getElementById('paletteStatus');
+    const wrap = document.getElementById('apiPalette');
+    try{
+      const res = await fetch('https://www.thecolorapi.com/scheme?hex=FF6B4A&mode=analogic&count=4');
+      const data = await res.json();
+      wrap.innerHTML = '';
+      data.colors.forEach(c => {
+        const col = document.createElement('div');
+        col.className = 'col-6 col-md-3';
+        col.innerHTML = `<div class="swatch" style="background:${c.hex.value}; color:${isDark(c.hex.value) ? '#fff' : '#0a0b10'};">${c.hex.value}</div>`;
+        wrap.appendChild(col);
+      });
+      statusEl.textContent = 'Esquema análogo generado a partir del acento #FF6B4A vía TheColorAPI.';
+    }catch(err){ statusEl.textContent = 'No se pudo consultar la API en este momento.'; }
+  }
+  function isDark(hex){
+    const c = hex.replace('#','');
+    const r = parseInt(c.substr(0,2),16), g = parseInt(c.substr(2,2),16), b = parseInt(c.substr(4,2),16);
+    return (0.299*r + 0.587*g + 0.114*b) < 150;
+  }
+  document.getElementById('refreshPalette').addEventListener('click', loadPalette);
+  loadPalette();
+
+  async function loadQuote(){
+    const el = document.getElementById('quoteText');
+    el.textContent = 'Cargando…';
+    try{
+      const res = await fetch('https://api.quotable.io/random?tags=motivational|inspirational');
+      const data = await res.json();
+      el.textContent = `"${data.content}"`;
+    }catch(err){ el.textContent = 'No se pudo cargar la frase.'; }
+  }
+  document.getElementById('newQuote').addEventListener('click', loadQuote);
+  loadQuote();
+
+  async function loadAPOD(){
+    const img = document.getElementById('apodImg');
+    const title = document.getElementById('apodTitle');
+    try{
+      const res = await fetch('https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY');
+      const data = await res.json();
+      if(data.media_type === 'image'){ img.src = data.url; }
+      title.textContent = data.title;
+    }catch(err){ title.textContent = 'No se pudo cargar la imagen de hoy.'; }
+  }
+  loadAPOD();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
